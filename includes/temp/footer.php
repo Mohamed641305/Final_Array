@@ -1,0 +1,37 @@
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- JavaScript Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="includes/assets/lib/wow/wow.min.js"></script>
+<script src="includes/assets/lib/easing/easing.min.js"></script>
+<script src="includes/assets/lib/waypoints/waypoints.min.js"></script>
+<script src="includes/assets/lib/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="includes/assets/js/main.js"></script>
+
+<script>
+  setTimeout(function() {
+    const alertBox = document.querySelector('.alert');
+    if (alertBox) {
+      alertBox.style.transition = "all 1s ease";
+      alertBox.style.opacity = "0";
+      alertBox.style.transform = "translateY(-20px)";
+
+      setTimeout(() => alertBox.remove(), 1000);
+    }
+  }, 3000);
+</script>
+
+
+</script>
+
+</body>
+
+</html>
