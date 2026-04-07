@@ -20,7 +20,7 @@ if ($page === "All") {
 
   <div class="container mt-5 pt-5">
     <div class="row justify-content-center">
-      <div class="col-md-10">
+      <div class="col-md-12">
 
         <?php if (isset($_SESSION['message'])): ?>
           <div class="alert alert-success alert-dismissible fade show text-center" role="alert">

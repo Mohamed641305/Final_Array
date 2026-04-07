@@ -25,7 +25,6 @@ if ($page === "All") {
         <?php if (isset($_SESSION['message'])): ?>
           <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
             <?= $_SESSION['message'] ?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         <?php unset($_SESSION['message']);
         endif; ?>
@@ -35,7 +34,10 @@ if ($page === "All") {
           <a href="?page=create" class="btn btn-success"><i class="fas fa-plus"></i> Add User</a>
         </div>
 
-        <div class="table-responsive shadow-sm rounded">
+        <!-- Search -->
+        <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search Users...">
+
+        <div id="tableView" class="table-responsive shadow-sm rounded">
           <table class="table table-hover table-bordered align-middle text-center">
             <thead class="table-dark">
               <tr>
@@ -75,6 +77,25 @@ if ($page === "All") {
       </div>
     </div>
   </div>
+
+  <!-- ====== Live Search JS ====== -->
+  <script>
+    document.getElementById("searchInput")?.addEventListener("keyup", function() {
+      let v = this.value.toLowerCase().trim();
+      document.querySelectorAll("#tableView tbody tr").forEach(function(row) {
+        // نتحقق من كل خلية للـ ID و Name و Email
+        let idCell = row.cells[0].innerText.toLowerCase();
+        let nameCell = row.cells[1].innerText.toLowerCase();
+        let emailCell = row.cells[2].innerText.toLowerCase();
+
+        if (idCell.includes(v) || nameCell.includes(v) || emailCell.includes(v)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    });
+  </script>
 
 <?php
 }
@@ -139,7 +160,7 @@ if ($page === "All") {
     $status = $_POST['status'];
 
     if ($user_name === "" || $email === "" || $password === "") {
-      $message = "Please fill all fields.";
+      $message = "Please Fill All Fields.";
     } else {
       $stmt = $connect->prepare("INSERT INTO users (user_name, email, `password`, `role`, `status`, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
       $stmt->execute([$user_name, $email, $password, $role, $status]);
@@ -206,9 +227,9 @@ if ($page === "All") {
     $status = $_POST['status'];
 
     if ($user_name === "" || $email === "" || $password === "") {
-      $message = "Please fill all fields.";
+      $message = "Please Fill All Fields.";
     } else {
-      $stmt = $connect->prepare("UPDATE users SET user_name=?, email=?, `password`=?, `role`=?, `status`=?, updated_at=NOW() WHERE user_id=?");
+      $stmt = $connect->prepare("UPDATE users SET user_name=?, email=?, `password`=?, `role`=?, `status`=?, created_at=NOW() WHERE user_id=?");
       $stmt->execute([$user_name, $email, $password, $role, $status, $id]);
       $_SESSION['message'] = "User Updated Successfully";
       header("Location: users.php");

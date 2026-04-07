@@ -41,8 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $stmt = $connect->prepare("INSERT INTO users (user_name, email, `password`, `role`, `status`, created_at) VALUES (?, ?, ?, 'user', '1', now())");
       $stmt->execute(array($name, $email, $pass));
       $_SESSION['user_login'] = $email;
-      $_SESSION['message_login'] = "Registration successful. Please login.";
-      header("Location: login.php");
+      // $_SESSION['message_login'] = "Registration successful. Please login.";
+      header("Location: index.php");
     }
   }
 }
@@ -80,4 +80,3 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </div>
   </div>
 </div>
-

@@ -6,13 +6,9 @@ $pass = "";
 
 try {
 
-$connect = new PDO($dsn, $user, $pass);
-$connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $connect = new PDO($dsn, $user, $pass);
+  $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
 
-} catch(PDOException $e) {
-
-echo "Connection failed: " . $e->getMessage();
-
+  echo "Connection failed: " . $e->getMessage();
 }
-
-?>
