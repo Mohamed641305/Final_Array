@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $email = $_POST['email'];
   $pass  = $_POST['pass'];
 
- /* ========================= VALIDATION ========================= */
+  /* ========================= VALIDATION ========================= */
 
   $fields = [$email, $pass];
   $empty = 0;
@@ -85,17 +85,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <h4 class="text-center mt-4 mb-5">Login Page</h4>
 
         <?php if (!empty($message)) { ?>
-          <h4 class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+          <h4 class="alert alert-danger alert-dismissible fade show text-center" role="alert" id="message">
             <?php echo $message; ?>
-            <button type="button" class="close" data-dismiss="alert">
-              <span>&times;</span>
-            </button>
           </h4>
         <?php } ?>
 
         <?php
         if (isset($_SESSION['message_login'])) {
-          echo "<h4 class='alert alert-danger text-center'>" . $_SESSION['message_login'] . "</h4>";
+          echo "<h4 class='alert alert-danger text-center' id='message_login'>" . $_SESSION['message_login'] . "</h4>";
           unset($_SESSION['message_login']);
         }
         ?>
@@ -122,3 +119,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </div>
   </div>
 </div>
+
+<!-- JS لإخفاء الرسائل بعد 3 ثواني -->
+<script>
+  setTimeout(() => {
+    const formMsg = document.getElementById('message');
+    if (formMsg) formMsg.style.display = 'none';
+
+    const loginMsg = document.getElementById('message_login');
+    if (loginMsg) loginMsg.style.display = 'none';
+  }, 3000);
+</script>

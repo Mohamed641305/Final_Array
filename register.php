@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $stmt = $connect->prepare("INSERT INTO users (user_name, email, `password`, `role`, `status`, created_at) VALUES (?, ?, ?, 'user', '1', now())");
       $stmt->execute(array($name, $email, $pass));
       $_SESSION['user_login'] = $email;
-      // $_SESSION['message_login'] = "Registration successful. Please login.";
+      // $_SESSION['message_login'] = $_SESSION['message_login'] ="Registration successful. Please login.";
       header("Location: index.php");
     }
   }
@@ -57,12 +57,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <h4 class="text-center mt-4 mb-5">Register New Account</h4>
 
         <!-- رسائل الخطأ -->
-        <?php if (!empty($message)) {
-        ?>
-          <div class="alert alert-danger"><?php echo $message ?></div>
-        <?php
-        }
-        ?>
+        <?php if (!empty($message)) { ?>
+          <h4 class="alert alert-danger alert-dismissible fade show text-center" role="alert" id="message">
+            <?php echo $message; ?>
+          </h4>
+        <?php } ?>
 
         <form method="post">
           <input type="text" name="name" value="<?php echo $name ?>" placeholder="Full Name" class="form-control mb-4">
@@ -80,3 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </div>
   </div>
 </div>
+
+
+<!-- JS لإخفاء الرسائل بعد 3 ثواني -->
+<script>
+  setTimeout(() => {
+    const formMsg = document.getElementById('message');
+    if (formMsg) formMsg.style.display = 'none';
+
+    // const loginMsg = document.getElementById('message_login');
+    // if (loginMsg) loginMsg.style.display = 'none';
+  }, 3000);
+</script>
