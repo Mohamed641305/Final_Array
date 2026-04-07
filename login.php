@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $email = $_POST['email'];
   $pass  = $_POST['pass'];
 
-  /* ========================= VALIDATION ========================= */
+ /* ========================= VALIDATION ========================= */
 
   $fields = [$email, $pass];
   $empty = 0;
